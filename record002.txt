@@ -1,0 +1,8 @@
+🧠 最終整理順序（簡單版本）
+步驟	你要做的事情	對應技術
+1️⃣	架伺服器、建專案	Django 專案、App、URL
+2️⃣	設計資料流程	models, views, urls
+3️⃣	設計母版	base.html + block
+4️⃣	寫各頁內容	子模板（extend + block）
+5️⃣	美化版面	CSS
+6️⃣	加互動功能	JavaScript
