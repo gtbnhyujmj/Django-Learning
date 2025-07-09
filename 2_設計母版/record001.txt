@@ -1,0 +1,34 @@
+你先設計出母版，然後在這個地方存儲要置換的內容，網頁看到就會來這個地方找東西填進母版。
+
+在 Django 中，{% extends "BasePage.html" %} 表示這個檔案繼承一個叫做 BasePage.html 的「母版（母模板）」，
+接著你會用 {% block 區塊名稱 %} 和 {% endblock %} 來定義哪些區塊內容要被這個子頁面填入並覆蓋。
+
+🔧 範例
+BasePage.html（母版）
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}網站標題{% endblock %}</title>
+</head>
+<body>
+    <header>這是頁首</header>
+
+    <div id="main-content">
+        {% block content %}
+        預設內容（如果子模板沒有覆蓋就顯示這個）
+        {% endblock %}
+    </div>
+
+    <footer>這是頁尾</footer>
+</body>
+</html>
+
+
+ChildPage.html（子頁）
+{% extends "BasePage.html" %}
+
+{% block title %}首頁 - 我的網站{% endblock %}
+
+{% block content %}
+    <p>這是首頁的內容，由子模板覆蓋掉母版的內容。</p>
+{% endblock %}
