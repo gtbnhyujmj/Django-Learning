@@ -6,3 +6,9 @@
 4️⃣	寫各頁內容	子模板（extend + block）
 5️⃣	美化版面	CSS
 6️⃣	加互動功能	JavaScript
+
+✅ 小建議：
+HTML 是內容骨架 → 儘早設計好母版
+CSS 是外觀樣式 → 視覺排版後期也可補
+JS 是互動邏輯 → 有功能需求時再加
+Django 本體（models, views）是你網站的「大腦」
