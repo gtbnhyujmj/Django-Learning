@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block TitleName %}我的網站{% endblock %}</title>
+
+  <!-- CSS 區塊 -->
+  <link href="{% static 'css/index.css' %}" rel="stylesheet">
+  {% block css %}{% endblock %}
+
+  <!-- JavaScript 區塊 -->
+  {% block js %}{% endblock %}
+</head>
+
+<body>
+  <div id="wrapper">
+
+    <!-- 頁首區塊 -->
+    <div id="banner">
+
+      <!-- Logo 區塊 -->
+      <div id="logo">
+        <img src="{% static 'images/logo.png' %}" alt="Logo">
+      </div>
+
+      <!-- 搜尋區塊 -->
+      <div id="search">
+        <input type="text" name="searchkey" placeholder="搜尋...">
+      </div>
+
+      <!-- 選單區塊 -->
+      <div id="menu">
+        <ul>
+          <li><a href="#">最新消息</a></li>
+          <li><a href="#">景點介紹</a></li>
+          <li><a href="#">產品</a></li>
+          <li><a href="#">熱銷產品</a></li>
+          <li><a href="#">聯絡我們</a></li>
+        </ul>
+      </div>
+
+      <!-- 廣告區塊 -->
+      <div id="ad">
+        {% block ad %}{% endblock %}
+      </div>
+
+    </div>
+
+    <!-- 內容區塊 -->
+    <div id="content">
+      {% block content %}
+      <!-- 子模板會將內容插入這裡 -->
+      {% endblock %}
+    </div>
+
+    <!-- 頁尾區塊 -->
+    <div id="footer">
+      <span>{% block footer %}這裡是頁尾（預設：聯成電腦）{% endblock %}</span>
+    </div>
+
+  </div>
+</body>
+</html>
