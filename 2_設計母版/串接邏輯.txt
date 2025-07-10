@@ -1,0 +1,41 @@
+三個步驟:
+
+===
+
+網頁html放在指定位置
+
+===
+
+到 app_name/views.py 加上：
+
+from django.shortcuts import render
+
+def login_view(request):
+    return render(request, 'login.html')
+
+# 有其他更快的寫法
+
+===
+
+打開 app_name/urls.py（如果還沒建立就自己建立），內容如下：
+# app_name = accounts......etc
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('login/', views.login_view, name='login'),
+]
+
+===
+
+然後在主專案的 urls.py（通常是 project_name/urls.py）加上 app 的路由：
+# project_name = sc, vicent6......etc
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('app_name.urls')),  # 請換成你 app 真正的名稱
+]
