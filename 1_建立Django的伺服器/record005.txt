@@ -1,0 +1,112 @@
+✅ 起手式可以這樣：
+在你剛剛的 sc 專案中：
+
+python manage.py startapp accounts
+在 accounts/views.py 中加入你登入、註冊的邏輯
+
+✅ 步驟 2：註冊這個 App 到 settings.py
+打開 sc/settings.py，找到 INSTALLED_APPS，加上 'accounts',：
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'accounts',  # 👈 加這行
+]
+
+✅ 步驟 3：建立基本的登入註冊畫面
+📄 建立 templates： 在 accounts 裡新建資料夾：
+
+accounts/
+├── templates/
+│   └── accounts/
+│       ├── login.html
+│       └── register.html
+
+login.html（簡版）：
+
+<h2>Login</h2>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+
+register.html（簡版）：
+
+<h2>Register</h2>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Register</button>
+</form>
+
+✅ 步驟 4：建立 views.py（邏輯）
+
+# accounts/views.py
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, logout
+
+def register_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')  # 或導向你想要的首頁
+    else:
+        form = UserCreationForm()
+    return render(request, 'accounts/register.html', {'form': form})
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            return redirect('home')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'accounts/login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+✅ 步驟 5：建立 urls.py
+在 accounts/ 裡建立 urls.py：
+
+# accounts/urls.py
+from django.urls import path
+from .views import login_view, register_view, logout_view
+
+urlpatterns = [
+    path('login/', login_view, name='login'),
+    path('register/', register_view, name='register'),
+    path('logout/', logout_view, name='logout'),
+]
+
+然後在 sc/urls.py 加入：
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),  # 👈 新增這行
+]
+
+✅ 步驟 6：建立首頁（測試登入後跳轉）
+
+
+✅ 步驟 7：建立超級使用者（進 admin 後台）
+加入 Django 的帳號系統：
+python manage.py createsuperuser
+然後你就能登入 http://127.0.0.1:8000/admin/ 看帳號管理後台
+
+🧭 小結：你現在應該已經有
+http://127.0.0.1:8000/accounts/register/ → 註冊頁
+http://127.0.0.1:8000/accounts/login/ → 登入頁
+http://127.0.0.1:8000/accounts/logout/ → 登出
