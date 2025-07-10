@@ -1,0 +1,10 @@
+sc/                   ← 專案資料夾（不要寫 view 在這）
+├── sc/
+│   └── urls.py       ← 主專案 URLs，只 include app 的 url 就好
+
+myapp/                ← 你自己建立的 Django app（舉例叫 myapp）
+├── views.py          ← 寫在這！
+├── urls.py           ← 自己的網址路由
+├── templates/
+│   └── myapp/
+│       └── login.html
