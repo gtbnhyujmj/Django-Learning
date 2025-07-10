@@ -76,7 +76,16 @@ venv\Scripts\activate
 
 ✅ 接下來你可以做的事（選一個告訴我，我來幫你）：
 📦 建立第一個 App（比如叫 blog、main 等）
-🧾 設計資料表（models）
+🧑‍💼 建立超級使用者（可以登入 admin 管理介面）
+
+
 🌐 建立首頁畫面（template）
+🎨 做 HTML 畫面模板
+
+🧾 設計資料表（models）
 🔄 加資料庫和表單
 ⚙️ 讓它能部署上網（像是用 Replit、PythonAnywhere、Render）
+
+
+
+
