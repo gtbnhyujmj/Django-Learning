@@ -1,0 +1,82 @@
+太好了，我一步步教你怎麼在 D://SC/ 下面，建立一個乾淨的 Django 專案，專案名就叫 sc，而且使用虛擬環境。💻
+
+
+✅ 完整步驟：在 D:\SC 下建立 Django 專案 sc
+
+🔹 Step 1：打開命令列（CMD 或 PowerShell）
+可以按下：🔍「開始」→ 輸入 cmd → 按 Enter
+
+Step 2：切換到目標資料夾 D:\SC
+D:
+cd SC
+
+如果還沒建立 SC 資料夾，可以先執行：
+mkdir SC
+cd SC
+
+🔹 Step 3：建立虛擬環境（名稱叫 venv）
+python -m venv venv
+📁 這會在 D:\SC\venv 下建立虛擬環境資料夾。
+
+🔹 Step 4：啟動虛擬環境
+venv\Scripts\activate
+成功後命令列前面會出現 (venv)，例如：
+
+(venv) D:\SC>
+
+🔹 Step 5：安裝 Django
+pip install django
+
+可選：檢查版本是否安裝成功
+django-admin --version
+
+🔹 Step 6：建立 Django 專案（名稱叫 sc）
+django-admin startproject sc .
+❗️注意後面的「.」（英文句號）代表在當前資料夾下建立，不然它會幫你多建一層資料夾。
+
+完成後會看到結構類似：
+
+makefile
+複製
+編輯
+D:\SC
+│
+├── venv\
+├── manage.py
+└── sc\
+    ├── __init__.py
+    ├── asgi.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+
+🔹Step 7：測試啟動開發伺服器
+python manage.py runserver
+
+成功的話，你會看到類似：
+Starting development server at http://127.0.0.1:8000/
+🔗 打開瀏覽器輸入 http://127.0.0.1:8000/ 就能看到 Django 歡迎頁面！
+
+🔹 停止伺服器
+按下鍵盤上的 Ctrl + C 就能停止。
+
+🔹 Step 8：關閉虛擬環境（離開時）
+deactivate
+
+
+✅ 加分：以後回來怎麼繼續開發？
+打開 CMD
+切換到 D:\SC 資料夾
+啟動虛擬環境：
+
+venv\Scripts\activate
+啟動伺服器或寫程式！
+
+
+
+✅ 接下來你可以做的事（選一個告訴我，我來幫你）：
+📦 建立第一個 App（比如叫 blog、main 等）
+🧾 設計資料表（models）
+🌐 建立首頁畫面（template）
+🔄 加資料庫和表單
+⚙️ 讓它能部署上網（像是用 Replit、PythonAnywhere、Render）
