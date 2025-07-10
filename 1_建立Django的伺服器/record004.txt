@@ -1,0 +1,16 @@
+🔍 解釋：virtualenvwrapper-win 是什麼？
+這是一個在 Windows 上使用 virtualenv 的輔助工具，讓你可以更方便地：
+
+建立虛擬環境：mkvirtualenv
+啟用虛擬環境：workon
+刪除虛擬環境：rmvirtualenv
+自動切換工作目錄
+
+但這個跟你用 python -m venv 建立的虛擬環境 是分開的機制，互不干擾。
+
+✅ 所以安裝這個 virtualenvwrapper-win：
+不會破壞你目前用 venv 建好的 Django 專案
+不會改到 Flask 專案的虛擬環境
+可以並存使用
+
+如果你覺得目前就用 venv 還可以，不一定非得用它，你可以先完成 Django 改寫，再來研究這個工具。
