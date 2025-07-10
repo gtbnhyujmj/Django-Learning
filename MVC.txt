@@ -1,0 +1,19 @@
+Django 的 MVC 架構是什麼？
+MVC 是一種常見的軟體架構設計模式，全名是 Model-View-Controller，用來把程式的邏輯分成三個部分，讓開發更有組織、更好維護。
+
+不過 Django 官方自己不是用 MVC 名稱，他們的設計其實是比較接近 MTV 模型：
+
+Model（模型）
+負責資料庫的資料結構和操作，像是資料表的定義和資料讀寫邏輯。
+Django 裡的 models.py 就是負責這部分。
+Model	Model	資料和資料庫操作
+
+Template（模板，對應View的外觀）
+負責呈現給使用者看的介面，也就是網頁的 HTML。
+Django 裡的模板就是 HTML 加上 Django 的模板語言。
+View	Template	呈現給使用者的頁面（HTML）
+
+View（視圖，對應 Controller 的邏輯）
+負責處理使用者的請求，決定用什麼資料、用什麼模板回應。
+Django 的 view 是程式碼中負責接收請求和回應的函式或類別。
+Controller	View	邏輯控制，處理請求和回應
