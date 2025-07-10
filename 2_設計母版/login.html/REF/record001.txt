@@ -9,3 +9,4 @@ form-label / form-control 等是 Bootstrap 的樣式。
 加入了「還沒有帳號？註冊」提示區（如不需要可刪）。
 
 如有需要支援 Remember Me、忘記密碼功能等，也可以額外加欄位。
+如果你有使用 Django 的內建 AuthenticationForm，這樣的表單就能即時顯示使用者名稱與密碼錯誤。
