@@ -1,0 +1,7 @@
+Django 預設設計是這樣運作的：
+
+你的專案根目錄/
+├── manage.py
+├── your_project/     ← settings.py 所在
+├── accounts/         ← app 1（平行放置）
+├── products/         ← app 2（平行放置）
