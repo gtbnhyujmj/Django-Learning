@@ -17,6 +17,7 @@ cd SC
 🔹 Step 3：建立虛擬環境（名稱叫 venv）
 python -m venv venv
 📁 這會在 D:\SC\venv 下建立虛擬環境資料夾。
+這個 venv 資料夾裡面有虛擬環境的執行檔、套件、設定等，但不會包含你的 Django 專案程式碼。
 
 🔹 Step 4：啟動虛擬環境
 venv\Scripts\activate
@@ -33,6 +34,9 @@ django-admin --version
 🔹 Step 6：建立 Django 專案（名稱叫 sc）
 django-admin startproject sc .
 ❗️注意後面的「.」（英文句號）代表在當前資料夾下建立，不然它會幫你多建一層資料夾。
+
+專案程式碼在哪裡？
+Django 專案的原始碼（manage.py、settings.py、app 等）會存在你創專案時指定的資料夾（通常是你執行 django-admin startproject sc 或自己建的資料夾）。
 
 完成後會看到結構類似：
 
@@ -72,6 +76,16 @@ deactivate
 venv\Scripts\activate
 啟動伺服器或寫程式！
 
+✅ 如何確認啟動的虛擬環境
+啟動虛擬環境後，在命令提示字元會看到類似 (venv) 這樣的前綴。
+
+where python
+（Windows）
+
+它會告訴你目前執行的 python.exe 路徑，例如：
+
+D:\sc\venv\Scripts\python.exe
+這表示你現在用的 Python 是虛擬環境裡的。
 
 
 ✅ 接下來你可以做的事（選一個告訴我，我來幫你）：
