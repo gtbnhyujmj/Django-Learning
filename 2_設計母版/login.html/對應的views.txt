@@ -1,0 +1,6 @@
+對應的 view 應該要有：
+
+from django.contrib.auth.views import LoginView
+
+class CustomLoginView(LoginView):
+    template_name = 'accounts/login.html'
