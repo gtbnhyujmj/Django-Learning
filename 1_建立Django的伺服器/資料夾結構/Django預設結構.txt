@@ -5,3 +5,8 @@ Django 預設設計是這樣運作的：
 ├── your_project/     ← settings.py 所在
 ├── accounts/         ← app 1（平行放置）
 ├── products/         ← app 2（平行放置）
+
+原因是：
+manage.py 執行時，Django 會把當前資料夾加到 Python 的匯入路徑 sys.path
+所以 accounts、products 放在這一層，匯入就會找得到
+如果你硬要把 app 放到 sc/ 裡，你就等於讓 Django 去 sc/sc/accounts 這種深度找 → Django 預設不會幫你找那裡
