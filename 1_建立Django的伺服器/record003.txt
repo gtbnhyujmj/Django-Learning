@@ -1,0 +1,12 @@
+⚠️ 提醒：你還有 18 個「migrations」沒執行
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+
+👉 這是什麼意思？
+Django 有一些「內建功能」像是使用者系統、登入驗證等功能。
+這些功能背後會用到資料庫，但目前資料庫還沒建立那些表格。
+
+所以它提醒你要執行：
+python manage.py migrate
+這個指令會幫你把必要的資料表建立好，像是 users、admin、sessions 這些。
