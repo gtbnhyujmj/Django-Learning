@@ -1,1 +1,25 @@
+📁 1_從開始到啟動空白伺服器.txt  
+標題：在 D:\SC 建立乾淨的 Django 專案 sc 並啟動伺服器
+
+✅ 步驟總覽：
+1. 建立資料夾 D:\SC
+2. 建立虛擬環境 venv
+3. 安裝 Django
+4. 建立空白 Django 專案 sc
+5. 啟動開發伺服器
+6. 測試成功畫面
+
+---
+
+🔹 Step 1：打開命令列（CMD 或 PowerShell）
+
+→ 點「開始」→ 輸入 `cmd` → 按 Enter
+
+---
+
+🔹 Step 2：切換到目標資料夾 D:\SC
+
+```cmd
+D:
+cd SC
 
