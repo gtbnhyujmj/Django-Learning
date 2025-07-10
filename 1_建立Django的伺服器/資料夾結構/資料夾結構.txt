@@ -1,26 +1,41 @@
-sc/                      ← 專案根目錄 =>> mkdir sc =>> (venv) D:\sc> [設定根目錄的名子]
-├── venv/                ← 放虛擬環境/不太會進來
+D:\sc\                         ← 專案根目錄（Git root）
+│
+├── venv\                      ← 虛擬環境（不會動它）
+│
+├── manage.py                  ← Django 的總指令管理入口
+├── requirements.txt           ← 套件安裝清單
 
-├── sc/                  ← =>> (venv) D:\sc>django-admin startproject YOUR_PROJECT_NAME . =>> 創造 [專案真正的名子]
+├── sc\                        ← 專案設定目錄（專案名稱）
 │   ├── __init__.py
-│   ├── settings.py
-│   ├── urls.py
+│   ├── settings.py            ← 總設定檔
+│   ├── urls.py                ← 總路由設定
 │   ├── asgi.py
 │   └── wsgi.py
 
-    ├── accounts/      ← App 1
-    ├── templates/ 
-        ├── .html      ← HTML放這邊
-    ├── models.py
-    ├── views.py
-    ├── db.sqlite3     ← 資料庫/一個app配一個資料庫
-    ├── ...
+├── accounts\                  ← App：帳號系統（登入、註冊）
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
 
-    ├── products/      ← App 2
-    ├── models.py
-    ├── views.py
-    ├── ...
+│   ├── migrations\
+│   └── templates\
+│       └── accounts\
+│           └── login.html     ← 登入頁面模板
 
-├── manage.py            ← 大總管
+├── products\                  ← App：商品展示與管理
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
 
-└── requirements.txt     ← 紀錄安裝套件（可選）
+│   ├── migrations\
+│   └── templates\
+│       └── products\
+│           └── list.html      ← 商品頁面模板（範例）
+
+├── db\                        ← 資料庫專用資料夾（選擇性使用）
+│   ├── accounts_db.sqlite3    ← accounts 專用資料庫（選擇性）
+│   └── products_db.sqlite3    ← products 專用資料庫（選擇性）
