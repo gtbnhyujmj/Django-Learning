@@ -1,4 +1,4 @@
-D:\sc\                         ← 專案根目錄（Git root）
+D:\vicent6\                    ← 專案根目錄（Git root）
 │
 ├── venv\                      ← 虛擬環境（不會動它）
 │
