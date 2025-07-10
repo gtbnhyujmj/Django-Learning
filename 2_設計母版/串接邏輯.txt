@@ -1,41 +1,74 @@
-三個步驟:
+Django 顯示一個 HTML 頁面的四大步驟（正確！）
 
 ===
 
-網頁html放在指定位置
+放好 HTML
+
+位置：
+your_app/templates/your_app/login.html
+
+建議： 加上 app 名稱那一層（your_app/），方便管理多個 app 的模板。
 
 ===
 
-到 app_name/views.py 加上：
+寫 View
+
+位置： "your_app" not project_name
+your_app/views.py
 
 from django.shortcuts import render
 
 def login_view(request):
-    return render(request, 'login.html')
+    return render(request, 'your_app/login.html')  # 記得路徑加 app 資料夾
 
-# 有其他更快的寫法
+補充：
+如果你用的是 Django 內建的 LoginView，可以用 class-based view，像這樣：
+
+from django.contrib.auth.views import LoginView
+
+class CustomLoginView(LoginView):
+    template_name = 'your_app/login.html'
 
 ===
 
-打開 app_name/urls.py（如果還沒建立就自己建立），內容如下：
-# app_name = accounts......etc
+app 層的 urls.py
+
+位置： 
+your_app/urls.py
 
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('login/', views.login_view, name='login'),
+    path('login/', views.login_view, name='login'),  # 或 CustomLoginView.as_view()
 ]
+
+補充： 記得這個 urls.py 要在每個 app 裡都建立一份。
 
 ===
 
-然後在主專案的 urls.py（通常是 project_name/urls.py）加上 app 的路由：
-# project_name = sc, vicent6......etc
+主專案的 urls.py 加上 include()
+
+位置： =>> "project_name"
+project_name/urls.py（例如 sc/urls.py）
 
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('app_name.urls')),  # 請換成你 app 真正的名稱
+    path('', include('your_app.urls')),  # 一定要加！Django 才會看得到 app 的路由
 ]
+
+
+補充： 如果你有很多 app，也可以這樣：
+path('accounts/', include('accounts.urls')),
+path('blog/', include('blog.urls')),
+
+===
+
+快速總結：這三層邏輯順序你要記住！
+
+URL (urls.py)
+  → View (views.py)
+    → Template (login.html)
