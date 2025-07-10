@@ -1,0 +1,9 @@
+建議檔案儲存位置（專案結構範例）
+
+如果你使用 Django 且 app 名為 accounts，請將此檔案放在：
+
+sc/
+├── accounts/
+│   ├── templates/
+│   │   └── accounts/
+│   │       └── login.html  ← 這裡
