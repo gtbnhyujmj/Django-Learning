@@ -1,4 +1,4 @@
-對應的 view 應該要有：
+# login 對應的 view 應該要有：
 
 from django.contrib.auth.views import LoginView
 
