@@ -1,0 +1,44 @@
+🧱 1. 安裝套件（選擇一個）
+方法 A：使用高效能的 mysqlclient（C寫的，比較快）
+bash
+複製
+編輯
+pip install mysqlclient
+Windows 安裝困難時可跳過，改用方法 B
+
+方法 B：使用純 Python 的 PyMySQL
+bash
+複製
+編輯
+pip install pymysql
+然後在 sc/__init__.py 加一行：
+
+python
+複製
+編輯
+import pymysql
+pymysql.install_as_MySQLdb()
+🛠️ 2. settings.py DATABASES 設定
+python
+複製
+編輯
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'your_db_name',         # 改成你的資料庫名稱
+        'USER': 'your_mysql_user',      # 改成你的使用者名稱
+        'PASSWORD': 'your_password',    # 改成你的密碼
+        'HOST': '127.0.0.1',            # 或 localhost
+        'PORT': '3306',                 # 預設 MySQL 埠號
+        'OPTIONS': {
+            'charset': 'utf8mb4',       # 推薦使用 utf8mb4 支援 emoji
+        }
+    }
+}
+🧾 3. MySQL 建資料庫語法（用 Workbench 或 CLI）
+sql
+複製
+編輯
+CREATE DATABASE your_db_name CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+如果你不想自己打，用 Workbench 直接點「Create Schema」也可以。
+
