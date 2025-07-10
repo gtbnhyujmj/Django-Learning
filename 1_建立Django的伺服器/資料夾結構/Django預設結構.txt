@@ -10,3 +10,11 @@ Django 預設設計是這樣運作的：
 manage.py 執行時，Django 會把當前資料夾加到 Python 的匯入路徑 sys.path
 所以 accounts、products 放在這一層，匯入就會找得到
 如果你硬要把 app 放到 sc/ 裡，你就等於讓 Django 去 sc/sc/accounts 這種深度找 → Django 預設不會幫你找那裡
+
+方法：把 app 放在 sc/ 內，調整 INSTALLED_APPS 名稱
+在 settings.py 中這樣寫：
+
+INSTALLED_APPS = [
+    ...
+    'sc.accounts',   # 注意這裡！一定要包含「完整路徑」
+]
