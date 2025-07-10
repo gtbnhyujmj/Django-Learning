@@ -1,0 +1,11 @@
+{{ form.as_p }} 改為用迴圈手動渲染欄位，這樣可以加上 Bootstrap 樣式與錯誤提示。
+
+加上 form.errors 的錯誤區塊提醒。
+
+novalidate 是為了避免瀏覽器原生驗證干擾測試。
+
+form-label / form-control 等是 Bootstrap 的樣式。
+
+加入了「還沒有帳號？註冊」提示區（如不需要可刪）。
+
+如有需要支援 Remember Me、忘記密碼功能等，也可以額外加欄位。
