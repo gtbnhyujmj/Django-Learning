@@ -1,1 +1,26 @@
+sc/                      ← 專案根目錄 =>> mkdir sc =>> (venv) D:\sc> [設定根目錄的名子]
+├── venv/                ← 放虛擬環境/不太會進來
 
+├── sc/                  ← =>> (venv) D:\sc>django-admin startproject YOUR_PROJECT_NAME . =>> 創造 [專案真正的名子]
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
+
+    ├── accounts/      ← App 1
+    ├── templates/ 
+        ├── .html      ← HTML放這邊
+    ├── models.py
+    ├── views.py
+    ├── db.sqlite3     ← 資料庫/一個app配一個資料庫
+    ├── ...
+
+    ├── products/      ← App 2
+    ├── models.py
+    ├── views.py
+    ├── ...
+
+├── manage.py            ← 大總管
+
+└── requirements.txt     ← 紀錄安裝套件（可選）
