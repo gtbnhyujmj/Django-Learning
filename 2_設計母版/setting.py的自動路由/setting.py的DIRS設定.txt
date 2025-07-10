@@ -1,0 +1,39 @@
+你希望不用設定 DIRS 或寫完整的資料夾路徑，只要在 app 裡放 login.html，Django 就能自動找到。
+
+好消息：Django 已經支援這樣的機制！
+Django 預設會自動去 每個 app 裡的 templates/ 資料夾找樣板，前提是你照下面這樣擺：
+
+正確做法一：使用 App Templates（推薦）
+目錄結構：
+
+your_project/
+├── myapp/
+│   ├── views.py
+│   └── templates/
+│       └── myapp/
+│           └── login.html
+
+注意：myapp 這層資料夾要重複一次喔
+這樣 Django 就能從 myapp/templates/myapp/login.html 自動找到這個模板
+
+然後在 views.py 裡這樣寫：
+
+return render(request, 'myapp/login.html')
+你什麼都不需要改 settings.py 的 'DIRS'，Django 會自動載入這種樣板。
+
+====
+
+如果你少了 myapp/ 這一層怎麼辦？
+例如你這樣放：myapp/templates/login.html
+
+那麼就要手動把這個目錄加入 TEMPLATES['DIRS']，像你前面說的：
+
+TEMPLATES = [
+    {
+        ...
+        'DIRS': [BASE_DIR / 'myapp' / 'templates'],
+        ...
+    },
+]
+
+這就是你覺得麻煩的地方。
