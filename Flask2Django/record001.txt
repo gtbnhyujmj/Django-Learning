@@ -1,0 +1,7 @@
+✅ 改寫順序建議（Flask → Django）
+Flask 功能	Django 對應	說明
+app.py 路由邏輯	views.py + urls.py	Django 分開路由與邏輯
+templates/	同樣有 templates/	Django 支援 Template 繼承
+使用者登入/註冊	django.contrib.auth	Django 內建帳號系統，非常強大
+flask_sqlalchemy	django.db.models	Django 內建 ORM
+session 儲存登入狀態	request.user + middleware	Django 自動處理 session
