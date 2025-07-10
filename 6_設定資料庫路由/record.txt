@@ -1,0 +1,65 @@
+🔧 怎麼讓 Django 每個 app 用不同的資料庫？
+
+這裡我給你 完整的做法 + 設定範例：
+✅ 一、settings.py 設定多個資料庫
+
+# settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'accounts/accounts_db.sqlite3',
+    },
+    'products': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'products/products_db.sqlite3',
+    }
+}
+
+✅ 二、建立資料庫路由器 routers.py
+
+你要自己建立一支 routers.py，放在專案根目錄（和 settings.py 同層）：
+
+# routers.py
+
+class AppRouter:
+    def db_for_read(self, model, **hints):
+        if model._meta.app_label == 'accounts':
+            return 'default'
+        elif model._meta.app_label == 'products':
+            return 'products'
+        return None
+
+    def db_for_write(self, model, **hints):
+        if model._meta.app_label == 'accounts':
+            return 'default'
+        elif model._meta.app_label == 'products':
+            return 'products'
+        return None
+
+    def allow_migrate(self, db, app_label, model_name=None, **hints):
+        if app_label == 'accounts':
+            return db == 'default'
+        elif app_label == 'products':
+            return db == 'products'
+        return None
+
+✅ 三、在 settings.py 裡註冊這個 router
+
+DATABASE_ROUTERS = ['sc.routers.AppRouter']
+
+注意：如果 routers.py 放在專案設定目錄 sc/ 裡，就用 'sc.routers.AppRouter'。
+✅ 四、建立資料庫 & 遷移（分開遷移）
+
+你必須針對不同資料庫分開遷移：
+
+# 建立 accounts 的資料庫表（會對應到 default）
+python manage.py makemigrations accounts
+python manage.py migrate --database=default
+
+# 建立 products 的資料庫表
+python manage.py makemigrations products
+python manage.py migrate --database=products
+
+✅ 五、使用 Django admin 還是照常註冊
+
+在 accounts/admin.py、products/admin.py 註冊 model 就好，Django admin 會依 router 自動判斷該用哪個資料庫。
