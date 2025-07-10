@@ -1,3 +1,5 @@
+2. 執行 migrate（資料庫初始化）
+
 ⚠️ 提醒：你還有 18 個「migrations」沒執行
 
 You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
