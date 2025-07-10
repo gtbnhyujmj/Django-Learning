@@ -1,0 +1,40 @@
+✅ 1. 老師叫你寫的：
+
+def login_view(request):
+    return render(request, 'your_app/login.html')
+
+意思：
+
+你自己寫一個「自訂的 login 頁面」，純粹渲染一個 login.html，不一定有登入邏輯。
+
+這種情境可能是：
+你還沒學到 Django 的 LoginView
+你要自己處理帳密驗證邏輯
+或是老師要你熟悉最基本的 view 寫法
+
+✅ 2. 我剛剛說的這個（GPT）：
+
+from django.contrib.auth.views import LoginView
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html'
+
+意思：
+
+這是 Django 提供的 內建登入邏輯，你只要寫好樣板，Django 幫你處理：
+    檢查帳密
+    登入 session
+    記住我功能
+    自動 redirect
+
+你不用自己寫登入驗證邏輯。
+
+然後搭配這個 urls.py：
+
+from django.urls import path
+from .views import CustomLoginView
+
+urlpatterns = [
+    path('login/', CustomLoginView.as_view(), name='login'),
+]
+
