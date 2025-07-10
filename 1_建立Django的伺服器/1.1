@@ -1,0 +1,45 @@
+1. 建立虛擬環境
+   └── python -m venv venv
+       └── venv/Scripts/activate（Windows）
+
+2. 安裝 Django
+   └── pip install django
+
+3. 建立 Django 專案
+   └── django-admin startproject sc .
+
+4. 建立 App（例：accounts）
+   └── python manage.py startapp accounts
+
+5. 設定 sc/settings.py
+   ├── INSTALLED_APPS += ['accounts']
+   ├── ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] or ['*']
+   ├── DATABASES 設定 ===> 不用 易出錯
+   └── STATICFILES_DIRS / TEMPLATES（進階）===> DIRS用自動路遊，不用寫。
+
+===
+
+資料庫
+
+6. 撰寫 accounts/models.py → 設計資料表
+
+7. 建立資料表（migrate）
+   └── python manage.py makemigrations
+   └── python manage.py migrate
+
+===
+
+網頁渲染
+
+8. 設計 urls / views / templates（MVC 架構）
+===> 位置勿擺錯
+
+===
+
+9. 建立 superuser（管理後台）
+   └── python manage.py createsuperuser
+
+===
+
+10. 啟動開發伺服器
+    └── python manage.py runserver
