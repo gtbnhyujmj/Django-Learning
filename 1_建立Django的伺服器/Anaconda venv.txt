@@ -11,7 +11,8 @@ venv 是 Python 原生的輕量級虛擬環境方案，用來隔離專案套件�
 不會衝突或出問題，但注意以下幾點：
 
 路徑要對
-你用 venv 建立的虛擬環境裡，執行 Python 或 Django 指令時，路徑要在你的專案目錄裡。Anaconda Prompt 本身是個 Terminal，裡面你也可以切換路徑、啟動 venv。
+你用 venv 建立的虛擬環境裡，執行 Python 或 Django 指令時，路徑要在你的專案目錄裡。
+Anaconda Prompt 本身是個 Terminal，裡面你也可以切換路徑、啟動 venv。
 換句話說，你在 Anaconda Prompt 裡，也能啟用你自己用 python -m venv venv 建立的虛擬環境。
 
 環境啟動方式不同
