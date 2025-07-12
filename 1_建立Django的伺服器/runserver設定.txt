@@ -1,9 +1,9 @@
-python manage.py runserver 0.0.0.0:80 代表任意IP都能連近來 而且還是走80號口
+python manage.py runserver 0.0.0.0:80 代表任意IP都能連近來 而且還是走80號口。
 簡單說就是：「允許任何人連進來，只要你的機器有對外開放」。
 
 :80 是什麼意思？
 指的是你要開啟的 TCP port，80 是 HTTP 的預設 port。
-即使綁定 0.0.0.0:80，如果主機防火牆沒放行 port 80，外部還是連不到。
+但是即使綁定 0.0.0.0:80，如果主機防火牆沒放行 port 80，外部還是連不到。
 
 Django 的 runserver 是給你開發和測試用的。
 正式上線建議使用 Gunicorn + Nginx 或 Daphne + Nginx（根據你是否用 async）。
