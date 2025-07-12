@@ -11,20 +11,29 @@ python manage.py startapp myapp
 2. 把網頁母版 = basepages.html 丟到 myapp/templates/myapp/下面。
    ===> myapp要重複兩次，這樣可以不用寫setting.py裡面的DIRS。
 
-3. 把static/css、static/images、static/js...放到正確的地方。
+3. 寫子網頁。
+
+4. 把static/css、static/images、static/js...放到正確的地方。
 
 ===
 
-設定 views.py（= python's def.）
-設定 myapp/urls.py 
+# 上浮一層
+
+設定 views.py（ = python's def.）
+設定 myapp/urls.py
 
 ===
 
 建立 models.py（資料庫結構）
 
 ===
+
+# 再度上浮一層
+
 設定 settings.py
-設定 project's/urls.py 
+設定 project's/urls.py
+
 ===
 
 一個隨插即用的APP寫好了。
+只要去setting.py的地方註冊好，理論上馬上就可以跑，還不會出錯。
