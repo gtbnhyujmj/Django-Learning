@@ -15,8 +15,8 @@
 5. 設定 sc/settings.py
    ├── INSTALLED_APPS += ['accounts']
    ├── ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] or ['*']
-   ├── DATABASES 設定 ===> 不用 易出錯
-   └── STATICFILES_DIRS / TEMPLATES（進階）===> DIRS用自動路遊，不用寫。
+   ├── DATABASES 設定 ===> 可以撰寫多個伺服器路由 = 管理方便 ===> 比較進階。
+   └── STATICFILES_DIRS ===> DIRS可以用自動路遊 = 不用寫。
 
 ===
 
