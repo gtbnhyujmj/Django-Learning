@@ -1,6 +1,7 @@
 1. 建立虛擬環境
    └── python -m venv venv
-       └── venv/Scripts/activate（Windows）
+       └── venv/Scripts/activate (第一次用打這個)（Windows）
+           venv\Scripts\activate.bat (重開機後要打這個)
 
 2. 安裝 Django
    └── pip install django
