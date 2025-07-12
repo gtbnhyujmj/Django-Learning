@@ -1,60 +1,30 @@
-✅ Django 網頁開發推薦流程（由底層 → 前端）
+✅ 總作法
 
-🧱 1. 建立 Django 專案與伺服器結構
-🔧 先把整個網站的骨架建起來
-
-django-admin startproject mysite
-
+1. 建立 Django 專案
+先把整個網站的骨架建起來
 python manage.py startapp myapp
 
+===>
+# 由最深的地方往最淺的地方走
+===>
+
+2. 把網頁母版 = basepages.html 丟到 myapp/templates/myapp/下面。
+   ===> myapp要重複兩次，這樣可以不用寫setting.py裡面的DIRS。
+
+3. 把static/css、static/images、static/js...放到正確的地方。
+
+===
+
+設定 views.py（= python's def.）
+設定 myapp/urls.py 
+
+===
+
+建立 models.py（資料庫結構）
+
+===
 設定 settings.py
+設定 project's/urls.py 
+===
 
-設定 URL（urls.py）
-
-🧭 2. 設計資料邏輯與網頁流程
-🔁 想清楚「資料從哪來 → 顯示到哪去」
-
-建 models.py（資料庫結構）
-
-設 views.py（資料處理邏輯）
-
-配 urls.py（網址 → 對應 view）
-
-🧩 3. 設計母模板（base.html）
-📄 像 Word 模板：定好共用區塊（header/footer/sidebar）
-
-設計版型：<head>、<body> 結構
-
-放 <title>, <nav>, <footer>, <script> 等共通區域
-
-使用 {% block content %} 讓子頁面可以覆蓋
-
-🖋 4. 寫子模板（各個頁面）
-✏️ 真正放內容的地方（填進母模板的空位）
-
-用 {% extends "base.html" %} 繼承母模板
-
-用 {% block content %}...{% endblock %} 填內容
-
-可搭配 views.py 傳資料給模板（例如傳 username）
-
-🎨 5. 撰寫 CSS（樣式）
-🎨 美化 HTML 結構
-
-用 style.css 檔案設計顏色、字體、間距、版型
-
-加進 base.html：
-
-html
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-可用 class="box"、id="main" 配合選擇器設計樣式
-
-⚙️ 6. 撰寫 JS（互動）
-🧠 加入點擊、動畫、資料驗證等互動功能
-
-新增 script.js 加進母模板或特定頁面：
-
-html
-<script src="{% static 'js/script.js' %}"></script>
-可搭配 <button onclick="..."> 或使用事件綁定
-
+一個隨插即用的APP寫好了。
