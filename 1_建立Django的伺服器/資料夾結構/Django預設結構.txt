@@ -2,7 +2,8 @@ Django 預設設計是這樣運作的：
 
 你的專案根目錄/
 ├── manage.py
-├── your_project/     ← settings.py 所在
+
+├── your_project/     ← settings.py 所在的位置
 ├── accounts/         ← app 1（平行放置）
 ├── products/         ← app 2（平行放置）
 
@@ -11,7 +12,9 @@ manage.py 執行時，Django 會把當前資料夾加到 Python 的匯入路徑 
 所以 accounts、products 放在這一層，匯入就會找得到
 如果你硬要把 app 放到 sc/ 裡，你就等於讓 Django 去 sc/sc/accounts 這種深度找 → Django 預設不會幫你找那裡
 
-方法：把 app 放在 sc/ 內，調整 INSTALLED_APPS 名稱
+
+解決方法：
+把 app 放在 sc/ 內，調整 INSTALLED_APPS 名稱
 在 settings.py 中這樣寫：
 
 INSTALLED_APPS = [
