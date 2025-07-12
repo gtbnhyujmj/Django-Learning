@@ -6,6 +6,7 @@
 🔹 Step 1：打開命令列（CMD 或 PowerShell）
 可以按下：🔍「開始」→ 輸入 cmd → 按 Enter
 
+
 🔹 Step 2：切換到目標資料夾 D:\SC
 D:
 cd SC
@@ -68,19 +69,18 @@ deactivate
 ✅ 加分：以後回來怎麼繼續開發？
 打開 CMD
 切換到 D:\SC 資料夾
-啟動虛擬環境：
 
+啟動虛擬環境：
 venv\Scripts\activate.bat
 啟動伺服器或寫程式！
 
 ✅ 如何確認啟動的虛擬環境
 啟動虛擬環境後，在命令提示字元會看到類似 (venv) 這樣的前綴。
 
-where python
-（Windows）
+輸入:
+where python（Windows）
 
 它會告訴你目前執行的 python.exe 路徑，例如：
-
 D:\sc\venv\Scripts\python.exe
 這表示你現在用的 Python 是虛擬環境裡的。
 
@@ -96,7 +96,3 @@ D:\sc\venv\Scripts\python.exe
 🧾 設計資料表（models）
 🔄 加資料庫和表單
 ⚙️ 讓它能部署上網（像是用 Replit、PythonAnywhere、Render）
-
-
-
-
