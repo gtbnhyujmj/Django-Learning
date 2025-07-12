@@ -1,8 +1,9 @@
-2. 執行 migrate（資料庫初始化）
+執行 migrate（資料庫初始化）
 
 ⚠️ 提醒：你還有 18 個「migrations」沒執行
 
-You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+You have 18 unapplied migration(s). 
+Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
 Run 'python manage.py migrate' to apply them.
 
 👉 這是什麼意思？
