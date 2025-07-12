@@ -13,6 +13,8 @@ accounts/
 │       ├── login.html
 │       └── register.html
 
+===
+===
 
 # 這裡是APP的位置 = accounts
 # NOT project site = sc
@@ -54,8 +56,9 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
-# APP's urls.py
-建立 urls.py
+===
+
+✅ APP's urls.py
 在 accounts/ 裡建立 urls.py：
 
 # accounts/urls.py
@@ -68,10 +71,12 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
 ]
 
+===
+===
 
 # 這裡上升到project_name的資料夾
 
-註冊這個 App 到 settings.py
+✅ 註冊這個 App 到 settings.py
 打開 sc/settings.py，找到 INSTALLED_APPS，加上 'accounts',：
 
 INSTALLED_APPS = [
@@ -84,8 +89,11 @@ INSTALLED_APPS = [
     'accounts',  # 👈 加這行
 ]
 
-✅ 步驟 5：建立 urls.py
+===
+
+✅ 建立 urls.py
 然後在 sc/urls.py 加入：
+
 from django.contrib import admin
 from django.urls import path, include
 
@@ -94,12 +102,16 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),  # 👈 新增這行
 ]
 
+===
+===
+
 ✅ 步驟 6：建立首頁（測試登入後跳轉）
 
 
 ✅ 步驟 7：建立超級使用者（進 admin 後台）
 加入 Django 的帳號系統：
 python manage.py createsuperuser
+
 然後你就能登入 http://127.0.0.1:8000/admin/ 看帳號管理後台
 
 🧭 小結：你現在應該已經有
