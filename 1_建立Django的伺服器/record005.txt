@@ -1,23 +1,10 @@
 ✅ 起手式可以這樣：
 在你剛剛的 sc 專案中：
-
 python manage.py startapp accounts
-在 accounts/views.py 中加入你登入、註冊的邏輯
 
-✅ 步驟 2：註冊這個 App 到 settings.py
-打開 sc/settings.py，找到 INSTALLED_APPS，加上 'accounts',：
+# 從深度最深的地方開始往上游
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'accounts',  # 👈 加這行
-]
-
-✅ 步驟 3：建立基本的登入註冊畫面
+✅ 建立基本的登入註冊畫面
 📄 建立 templates： 在 accounts 裡新建資料夾：
 
 accounts/
@@ -26,31 +13,20 @@ accounts/
 │       ├── login.html
 │       └── register.html
 
-login.html（簡版）：
 
-<h2>Login</h2>
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-</form>
+# 這裡是APP的位置 = accounts
+# NOT project site = sc
 
-register.html（簡版）：
-
-<h2>Register</h2>
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Register</button>
-</form>
-
-✅ 步驟 4：建立 views.py（邏輯）
+✅ 建立 views.py
+在 accounts/views.py 中加入你登入與註冊的邏輯設定 = 設定 python's def.
 
 # accounts/views.py
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login, logout
 
+from django.contrib.auth import login, logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
+# register logic
 def register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -62,6 +38,7 @@ def register_view(request):
         form = UserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
 
+# login logic
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
@@ -72,11 +49,13 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
 
+# logout logic
 def logout_view(request):
     logout(request)
     return redirect('login')
 
-✅ 步驟 5：建立 urls.py
+# APP's urls.py
+建立 urls.py
 在 accounts/ 裡建立 urls.py：
 
 # accounts/urls.py
@@ -89,6 +68,23 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
 ]
 
+
+# 這裡上升到project_name的資料夾
+
+註冊這個 App 到 settings.py
+打開 sc/settings.py，找到 INSTALLED_APPS，加上 'accounts',：
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'accounts',  # 👈 加這行
+]
+
+✅ 步驟 5：建立 urls.py
 然後在 sc/urls.py 加入：
 from django.contrib import admin
 from django.urls import path, include
