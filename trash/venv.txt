@@ -6,8 +6,12 @@ Django 開發時常用的虛擬環境工具有 venv 或 virtualenv。
 是用軟體模擬一台電腦，讓你能在一台實體電腦裡同時跑多個作業系統。
 例如用 VirtualBox、VMware。
 
+===
+
 為什麼 Django 專案會用虛擬環境？
-Django 是 Python 框架，會用到很多套件（library）。如果你在全系統安裝不同版本的套件，會造成版本衝突、難以管理。虛擬環境就幫你把這些套件「隔離」開來，方便專案維護。
+Django 是 Python 框架，會用到很多套件（library）。
+如果你在全系統安裝不同版本的套件，會造成版本衝突、難以管理。
+虛擬環境就幫你把這些套件「隔離」開來，方便專案維護。
 
 常見的虛擬環境工具:
 Python 內建的 venv
@@ -30,6 +34,5 @@ pip install django
 deactivate
 
 小結
-「黑窗」就是你執行命令的地方（Command Prompt、PowerShell 或 Terminal）
-虛擬環境讓你在「黑窗」裡控制和管理專案的 Python 環境與套件版本，避免不同專案互相干擾
-
+「黑窗」就是你執行命令的地方（Command Prompt、PowerShell 或 Terminal）。
+「虛擬環境」讓你在「黑窗」裡控制和管理專案的 Python 環境與套件版本，避免不同專案互相干擾。
