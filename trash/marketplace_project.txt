@@ -1,10 +1,14 @@
 /marketplace_project/
 ├── manage.py
+
 ├── marketplace/
 │   ├── models.py         ← 使用者點數、商品、交易紀錄
 │   ├── views.py          ← 儲值、兌換、提領
 │   ├── urls.py           ← 對應網址
+
 │   ├── templates/        ← 前端畫面
+
 │   ├── admin.py          ← 後台管理
 │   └── forms.py          ← 付款與提領表單
+
 └── db.sqlite3            ← 測試用資料庫
