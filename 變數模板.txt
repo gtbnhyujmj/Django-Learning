@@ -1,0 +1,82 @@
+太好了，你說到的這句：
+
+python
+複製
+編輯
+data = "var test = [OK]; var i = [test]aaa"
+若老師是在 Python + Django 裡講「如何處理模板式資料（像 [OK]、[test]）或切割 JSON 中的類似內容」，我們可以從幾個實用角度來解析這段，並給你範例：
+
+✅ 一、處理模板格式字串 → 替換 [OK] 和 [test]
+如果你有一個類似下面的資料：
+
+python
+複製
+編輯
+data = "var test = [OK]; var i = [test]aaa"
+context = {
+    "OK": "123",
+    "test": "456"
+}
+你想把 [OK]、[test] 替換成字典中的值：
+
+🔧 替換程式碼：
+python
+複製
+編輯
+import re
+
+def replace_placeholders(text, context):
+    return re.sub(r'\[(\w+)\]', lambda m: str(context.get(m.group(1), m.group(0))), text)
+
+data = "var test = [OK]; var i = [test]aaa"
+context = {
+    "OK": "123",
+    "test": "456"
+}
+result = replace_placeholders(data, context)
+print(result)
+🧾 輸出：
+csharp
+複製
+編輯
+var test = 123; var i = 456aaa
+✅ 二、如果來自 JSON → 你要怎麼解析
+假設你從前端傳來 JSON，如：
+
+json
+複製
+編輯
+{
+  "script": "var test = [OK]; var i = [test]aaa",
+  "context": {
+    "OK": "123",
+    "test": "456"
+  }
+}
+你可以在 Django view 中處理這樣的 POST：
+
+🔧 Django View 範例：
+python
+複製
+編輯
+import json
+from django.http import JsonResponse
+import re
+
+def parse_template(request):
+    if request.method == 'POST':
+        body = json.loads(request.body)
+        data = body.get("script", "")
+        context = body.get("context", {})
+
+        def replace(text, ctx):
+            return re.sub(r'\[(\w+)\]', lambda m: str(ctx.get(m.group(1), m.group(0))), text)
+
+        result = replace(data, context)
+        return JsonResponse({"result": result})
+✅ 三、你學到的技能重點：
+技能	說明
+re.sub 替換模板	用 [] 括號標示的變數替換成值
+json.loads()	把 JSON 轉成 Python dict
+Django 處理 POST	接收 JSON，進行邏輯處理再回傳結果
+
