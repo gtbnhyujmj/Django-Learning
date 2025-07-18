@@ -1,0 +1,5 @@
+✅ 基本流程說明
+你需要兩個檔案：
+models.py：定義資料表（模型）結構
+
+admin.py：讓這些資料表可以在 Django 管理後台（admin site）中操作
