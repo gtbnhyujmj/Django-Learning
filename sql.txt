@@ -1,0 +1,25 @@
+django的sql語法 跟 標準sql語法不同。因為資料庫已經物件化。
+
+
+ChatGPT 說：
+完全正確，你一語中的。
+
+✅ Django 的資料庫操作語法是「ORM 語法」
+也就是：Object-Relational Mapping（物件關聯對映）
+這意味著：你不需要手寫 SQL，改用 Python 物件操作資料庫
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.IntegerField()
+
+會轉成資料表：
+CREATE TABLE product (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(100),
+    price INTEGER
+);
+
+✳️ 小結：
+✅ Django ORM 讓你用 Python 寫法操作資料，更安全、更簡潔、更可讀
+
+✅ Django 會自己幫你轉換成 SQL，不用你管底層語法（除非你要做複雜查詢）
