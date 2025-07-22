@@ -1,0 +1,125 @@
+這是商城系統中最常用也最重要的共用元件之一。
+我們來幫你完成以下任務：
+
+✅ 任務目標（你要的功能）
+#banner 區塊整合 3 大功能：
+
+Logo → 右邊（但視覺效果為整體右上）
+
+使用者狀態 → 登入/登出/註冊按鈕
+
+搜尋欄 → 輸入搜尋文字（先不接資料庫）
+
+🧩 HTML + CSS 版整合（加入 basepages.html）
+你可以直接把這段放進你 basepages.html 裡面 <body> 裡原本的 <div id="banner"> 位置，原封不動取代：
+
+html
+複製
+編輯
+<!-- 頁首區塊 -->
+<div id="banner">
+  <!-- 使用 Flex 排版 -->
+  <div class="banner-container">
+    
+    <!-- 搜尋 -->
+    <div class="search-box">
+      <input type="text" name="searchkey" placeholder="搜尋...">
+    </div>
+
+    <!-- 使用者狀態（登入/註冊/登出） -->
+    <div class="user-status">
+      {% if request.user.is_authenticated %}
+        歡迎，{{ request.user.username }}！
+        <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-danger">登出</a>
+      {% else %}
+        <a href="{% url 'login' %}" class="btn btn-sm btn-outline-primary">登入</a>
+        <a href="{% url 'register' %}" class="btn btn-sm btn-outline-success">註冊</a>
+      {% endif %}
+    </div>
+
+    <!-- Logo（靠右） -->
+    <div class="logo-box">
+      <img src="{% static 'images/logo.png' %}" alt="Logo">
+    </div>
+    
+  </div>
+</div>
+🎨 CSS 設定（請加到 /static/css/index.css）
+css
+複製
+編輯
+#banner {
+  background-color: #f0f0f0;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.banner-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-box input[type="text"] {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.user-status {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.logo-box img {
+  max-height: 40px;
+}
+✅ 結果預期（版面）
+左側	中間	右側
+搜尋欄	登入登出區	Logo 圖片
+
+📂 圖片建議路徑
+請把 logo 圖片放到這個位置：
+
+swift
+複製
+編輯
+static/images/logo.png
+建議尺寸：300x60px 左右，太大請縮小（max-height: 40px 會控制它）
+
+✅ 加入 basepages.html 的位置建議
+如果你 basepages.html 結構長這樣：
+
+html
+複製
+編輯
+<body>
+  <div id="wrapper">
+    <div id="banner">
+      <!-- ✨ 放這裡替換掉舊的 banner 內容 ✨ -->
+    </div>
+
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <div id="footer">...</div>
+  </div>
+</body>
+就直接把我給你的 HTML 貼到 #banner 裡就好。
+
+✅ 下一步可選功能（你要的話說一聲）：
+✅ 搜尋欄連接 view：輸入關鍵字後轉到 /search/?q=xxx
+
+✅ 顯示使用者大頭貼或會員圖示
+
+✅ 登入後導向會員中心
+
+✅ 讓這整個 banner 拆成 banner.html 再 {% include %} 到母版中，完全模組化
+
+如果你要我打包 .zip 或做成 GitHub-ready 結構，或加入「會員中心」、「商品區塊」也可以，說一聲就幫你整理好整套 💼
