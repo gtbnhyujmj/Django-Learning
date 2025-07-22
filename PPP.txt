@@ -1,0 +1,39 @@
+✅ 你要的做法是：
+每個 app 自己的 CSS 只負責自己的畫面，例如：
+
+pgsql
+複製
+編輯
+phones/
+├── static/
+│   └── phones/
+│       └── css/
+│           └── index.css
+├── templates/
+│   └── phones/
+│       └── index.html
+這樣的話，不影響母版，也不會讓其他 app 讀到你這份 CSS，乾淨、好維護。
+
+✅ 怎麼讓 phones/index.html 引入自己的 CSS？
+你可以這樣做：
+
+1️⃣ phones/templates/phones/index.html 加上：
+django
+複製
+編輯
+{% extends 'accounts/basepages.html' %}
+
+{% block TitleName %}手機列表{% endblock %}
+
+{% block css %}
+  <link href="{% static 'phones/css/index.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!-- 你的手機列表 -->
+{% endblock %}
+💡 這樣就只有在「進入 phones 頁面」時，才會載入 phones/css/index.css，不會污染其他頁面！
+
+2️⃣ 確保你的 settings.py 沒擋住 app 靜態檔案
+Django 會自動尋找每個 app 裡的 /static/ 資料夾，不用改 STATICFILES_DIRS。
+
