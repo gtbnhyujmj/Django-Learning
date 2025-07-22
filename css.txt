@@ -1,0 +1,19 @@
+✅ 兩個原則你要記：
+static/ 是放「靜態檔案」用的資料夾，不能放在 templates/ 裡面
+
+Django 預設會找 your_app/static/ 這種路徑，不需要改 settings.py
+
+✅ 加載方式（在 HTML 裡）
+你在 HTML 裡記得這樣寫：
+
+html
+複製
+編輯
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+注意：
+
+不要寫絕對路徑 /static/css/index.css，而是用 {% static %} 去找！
+
+要先 {% load static %} 才能用 {% static '路徑' %}
