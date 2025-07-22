@@ -1,0 +1,19 @@
+✅ 2. 在 basepages.html 顯示使用者狀態（右上角）
+把這段加到你母版的 <div id="banner"> 裡你喜歡的位置（例如 logo 右邊、menu 上方...）
+
+以下是建議放法（結構簡單、可用 Bootstrap 做右上角）：
+
+html
+複製
+編輯
+<div class="text-end p-2">
+  {% if request.user.is_authenticated %}
+    歡迎，{{ request.user.username }}！
+    <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-danger ms-2">登出</a>
+  {% else %}
+    <a href="{% url 'login' %}" class="btn btn-sm btn-outline-primary">登入</a>
+    <a href="{% url 'register' %}" class="btn btn-sm btn-outline-success ms-2">註冊</a>
+  {% endif %}
+</div>
+✅ request.user.is_authenticated 是 Django 判斷是否登入的標準做法
+✅ {{ request.user.username }} 是抓登入者名稱（預設是帳號）
