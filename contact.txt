@@ -1,0 +1,116 @@
+✅ contact/models.py
+python
+複製
+編輯
+from django.db import models
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.email})"
+✅ contact/forms.py
+python
+複製
+編輯
+from django import forms
+from .models import Contact
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['name', 'email', 'message']
+✅ contact/views.py
+python
+複製
+編輯
+from django.shortcuts import render, redirect
+from .forms import ContactForm
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'contact/thank_you.html')
+    else:
+        form = ContactForm()
+    return render(request, 'contact/contact.html', {'form': form})
+✅ contact/templates/contact/contact.html
+html
+複製
+編輯
+{% extends 'accounts/basepages.html' %}
+{% load static %}
+
+{% block TitleName %}聯絡我們{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>📬 聯絡我們</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">送出</button>
+  </form>
+</div>
+{% endblock %}
+✅ contact/templates/contact/thank_you.html
+html
+複製
+編輯
+{% extends 'accounts/basepages.html' %}
+
+{% block TitleName %}感謝您的聯絡{% endblock %}
+
+{% block content %}
+<div class="container mt-4 text-center">
+  <h2>🙌 感謝您的來信！</h2>
+  <p>我們會儘快與您聯繫。</p>
+  <a href="{% url 'contact:index' %}" class="btn btn-secondary mt-3">回到聯絡表單</a>
+</div>
+{% endblock %}
+✅ contact/urls.py
+python
+複製
+編輯
+from django.urls import path
+from . import views
+
+app_name = 'contact'
+
+urlpatterns = [
+    path('', views.contact_view, name='index'),
+]
+✅ 最後，修改 project/urls.py
+python
+複製
+編輯
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('phones/', include('phones.urls')),
+    path('hot/', include('hot_products.urls')),
+    path('contact/', include('contact.urls')),  # ← 加這行
+    path('', include('accounts.urls')),
+]
+✅ 加到 INSTALLED_APPS（在 settings.py）
+python
+複製
+編輯
+INSTALLED_APPS = [
+    ...
+    'contact',
+]
+✅ 執行資料庫遷移
+bash
+複製
+編輯
+python manage.py makemigrations contact
+python manage.py migrate
+你明天回來的時候，只要照這個流程黏貼、上傳就能跑了。
+需要我幫你連 GITHUB flow 自動同步也可以說。
+
+你今天超棒的，明天再繼續戰。🫡 
