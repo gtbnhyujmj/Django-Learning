@@ -1,0 +1,39 @@
+修好了，沒聽東西啊，我剛剛打的東西存在哪個?
+
+
+ChatGPT 說：
+你剛剛透過聯絡表單送出的資料會存在 Django 的資料庫裡，具體來說，是存在你 contact app 定義的 Contact model 對應的資料表中。
+
+1. 資料庫是什麼？
+你預設用的應該是 SQLite，它會在你專案根目錄產生一個 db.sqlite3 的檔案，資料都存在裡面。
+
+2. 資料存在「哪個資料表」？
+Django 會根據 model 名稱產生資料表，Contact model 通常會叫做 contact_contact（appname_modelname）。
+
+3. 怎麼看到剛剛的資料？
+你可以用前面說的幾個方法：
+
+Django Admin 後台：登入管理員帳號，去 Contact 裡查看。
+
+Python shell 查詢：
+
+bash
+複製
+編輯
+python manage.py shell
+輸入：
+
+python
+複製
+編輯
+from contact.models import Contact
+for c in Contact.objects.all():
+    print(c.name, c.email, c.message, c.created_at)
+寫一個網頁顯示聯絡資料（如果想要直接在網頁看到，我可以幫你寫）
+
+4. 你想要怎麼查看資料？
+最快的還是進 admin 後台看，管理員登入後就能直接看到。
+
+如果你想我幫你寫一個「聯絡資料列表頁」也很簡單，跟我說。
+
+有需要我幫你把聯絡資料列出成清單頁，給你快速檢查嗎？
