@@ -1,0 +1,68 @@
+可能原因與檢查步驟：
+hot_products/urls.py 有沒有設置 app_name = 'hot_products'？
+
+請打開 hot_products/urls.py，確認裡面有這行：
+
+python
+複製
+編輯
+app_name = 'hot_products'
+這是註冊 URL 命名空間的關鍵，沒有這行 Django 不會知道 hot_products 是 namespace。
+
+主 urls.py 有沒有 include 且路徑跟 namespace 對應？
+
+通常在 your_project/urls.py 裡，要有類似這樣：
+
+python
+複製
+編輯
+from django.urls import path, include
+
+urlpatterns = [
+    path('hot/', include('hot_products.urls')),
+    # 其他 include
+]
+這裡的 'hot/' 是你網址的 prefix，不用跟 app_name 同名，但要 include 到正確的 urls.py。
+
+hot_products/urls.py 範例完整內容：
+
+python
+複製
+編輯
+from django.urls import path
+from . import views
+
+app_name = 'hot_products'  # 一定要有這行
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+views.py 裡有 index view 嗎？
+
+python
+複製
+編輯
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'hot_products/index.html')
+templates/hot_products/index.html 有沒有？
+
+並且 index.html 用 {% extends 'accounts/basepages.html' %} 等擴充母版。
+
+母版裡面 url 用法範例
+
+html
+複製
+編輯
+<a href="{% url 'hot_products:index' %}">熱銷產品</a>
+確保 app_name 跟這邊 url 一致。
+
+總結
+hot_products/urls.py 必須有 app_name = 'hot_products'
+
+your_project/urls.py 必須 include 'hot_products.urls'
+
+模板中的 {% url 'hot_products:index' %} 才不會報錯
+
+如果你要，我可以幫你寫個最簡完整的 hot_products/urls.py 和 views.py 範例，讓你直接複製貼上，確保不會出錯。需要告訴我。
