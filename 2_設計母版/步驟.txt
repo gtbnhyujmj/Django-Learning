@@ -1,0 +1,120 @@
+✅ 步驟一：放好你的 HTML 檔案
+你把 basepages.html 放到這個位置（很重要！）：
+
+複製
+編輯
+your_project/
+├── your_app/
+│   ├── templates/
+│   │   └── basepages.html  ← 你剛打好的母版
+🔧 若你的 templates/ 還沒建，請自己建立資料夾。
+
+✅ 步驟二：新增一個 view 讓首頁直接渲染 basepages.html
+在 your_app/views.py 裡新增一個簡單首頁 view：
+
+python
+複製
+編輯
+from django.shortcuts import render
+
+def homepage(request):
+    return render(request, 'basepages.html')
+✅ 步驟三：接好 urls.py
+如果你是 app 裡的 your_app/urls.py：
+python
+複製
+編輯
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.homepage, name='homepage'),
+]
+如果你是 project 裡的 project/urls.py：
+python
+複製
+編輯
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('your_app.urls')),  # ← 這裡接上你 app 的網址
+]
+✅ 步驟四：啟動伺服器（Run server）
+進入專案根目錄後，執行：
+
+bash
+複製
+編輯
+python manage.py runserver
+然後打開瀏覽器看這個網址：
+
+cpp
+複製
+編輯
+http://127.0.0.1:8000/
+就會看到你打的母版長什麼樣子！
+
+✅ 步驟五：預備複製 index.html 後，測試新頁面
+你可以照下面方式複製一份：
+
+pgsql
+複製
+編輯
+your_app/
+├── templates/
+│   ├── basepages.html
+│   └── index.html
+index.html 開頭就加：
+
+html
+複製
+編輯
+{% extends 'basepages.html' %}
+
+{% block TitleName %}首頁{% endblock %}
+
+{% block content %}
+  <h1>歡迎來到首頁</h1>
+{% endblock %}
+然後在 views.py 加新的 view：
+
+python
+複製
+編輯
+def index(request):
+    return render(request, 'index.html')
+在 urls.py 加一行：
+
+python
+複製
+編輯
+path('index/', views.index, name='index'),
+打開網址：http://127.0.0.1:8000/index/
+你就會看到你新頁面有套用母版了。
+
+✅ 開發流程整理一下（你說的「插電、測試、關掉、再寫」）：
+寫一頁 HTML → 存進 templates
+
+開一個 view → render() 那頁
+
+urls.py 接上路由
+
+python manage.py runserver 打開伺服器
+
+看結果 → 沒問題就繼續下一頁
+
+改完要 Ctrl + C 關掉伺服器再重開（避免 cache 或檔案沒更新）
+
+要不要我現在幫你建一個這種可跑的 Django 架構？我可以幫你建立：
+
+一個 app：main/
+
+一個母版頁：basepages.html
+
+一個首頁頁面：index.html
+
+所有 view + url 接好
+
+可以直接 runserver 的完整骨架
