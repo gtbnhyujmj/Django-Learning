@@ -1,0 +1,97 @@
+🔧 步驟二：每個 App 建一個 urls.py（模組化）
+在 phones/urls.py 中加入：
+
+python
+複製
+編輯
+from django.urls import path
+from . import views
+
+app_name = 'phones'
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+同樣方式複製一份到：
+
+hot_products/urls.py → app_name = 'hot_products'
+
+contact/urls.py → app_name = 'contact'
+
+🔧 步驟三：每個 App 做一個簡單的 views.py
+python
+複製
+編輯
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'phones/index.html')  # 其他 app 請對應改名
+同樣方式放到其他 app。
+
+🔧 步驟四：建立對應的 templates
+請建立：
+
+pgsql
+複製
+編輯
+phones/
+├── templates/
+│   └── phones/
+│       └── index.html
+phones/index.html 內容建議如下：
+
+html
+複製
+編輯
+{% extends 'accounts/basepages.html' %}
+
+{% block TitleName %}手機商品{% endblock %}
+
+{% block content %}
+  <h2>這是手機商品頁面</h2>
+{% endblock %}
+其他 app 同理：
+
+hot_products/templates/hot_products/index.html
+
+contact/templates/contact/index.html
+
+🔧 步驟五：把它們加到主專案的 urls.py
+修改 your_project/urls.py（通常在同一層跟 manage.py 平行），加上：
+
+python
+複製
+編輯
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('accounts.urls')),  # 首頁與登入等
+    path('phones/', include('phones.urls')),
+    path('hot/', include('hot_products.urls')),
+    path('contact/', include('contact.urls')),
+]
+🔧 步驟六：讓母版 menu 點下去能進入這些 App
+修改 basepages.html 的 menu 區塊：
+
+html
+複製
+編輯
+<div id="menu">
+  <ul>
+    <li><a href="{% url 'phones:index' %}">手機</a></li>
+    <li><a href="{% url 'hot_products:index' %}">熱銷產品</a></li>
+    <li><a href="{% url 'contact:index' %}">聯絡我們</a></li>
+  </ul>
+</div>
+🎉 測試方法
+打開瀏覽器：
+
+http://127.0.0.1:8000/phones/
+
+http://127.0.0.1:8000/hot/
+
+http://127.0.0.1:8000/contact/
+
+✅ 如果有畫面、沒有錯誤，表示你三個 APP 已經成功啟動。
