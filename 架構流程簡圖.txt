@@ -1,0 +1,23 @@
+🔧 Django 架構流程簡圖
+plaintext
+複製
+編輯
+使用者請求 (Browser)
+      ↓
+urls.py：URL 對應的路由設定
+      ↓
+views.py：處理邏輯的函式或類別
+      ↓
+models.py（如需要存取資料庫）：與 DB 溝通
+      ↓
+templates/：HTML 回傳給使用者
+📁 Django 常見檔案與資料夾說明
+檔案/資料夾	用途簡述
+manage.py	Django 專案的命令入口，例如啟動伺服器、建立資料庫
+project_name/settings.py	設定檔，包括資料庫、靜態檔、已安裝的 app 等
+project_name/urls.py	專案層級的路由對應表
+app_name/models.py	資料庫的模型定義（ORM）
+app_name/views.py	業務邏輯處理
+app_name/urls.py	應用層級的路由定義
+app_name/templates/	HTML 模板（搭配 Django Template Language）
+app_name/static/	靜態資源（JS、CSS、圖片）
