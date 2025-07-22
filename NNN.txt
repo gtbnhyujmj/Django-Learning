@@ -1,0 +1,54 @@
+然後每個 app：
+
+都自己有 templates/products/*.html
+
+都有 urls.py
+
+都有 views.py，裡面有一個 index() view 回傳首頁
+
+✅ 五、未來功能建議
+APP 名稱	建議功能
+products	商品列表、分類、商品細節、庫存、價格
+hot	篩選 top 銷量 / 評分商品，自動更新
+contact	表單寫信（搭配 EmailMessage 或存 DB）
+
+✅ CSS 版的 menu 建議樣式（加到 index.css）
+css
+複製
+編輯
+#menu {
+  background-color: #333;
+  padding: 10px 0;
+}
+
+#menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#menu li {
+  margin: 0 15px;
+}
+
+#menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#menu a:hover {
+  text-decoration: underline;
+}
+🎁 要不要我幫你做好這三個 APP 的雛型結構（products / hot / contact），包含：
+urls.py
+
+views.py
+
+index.html
+
+母版整合好的選單導航
+
+只要你說「幫我做雛型 app 結構」，我可以整包打給你！你只管接電、上線、填內容 🧠⚙️
