@@ -1,0 +1,18 @@
+✅ 解法：執行 Django 的 migrate 指令，把表建出來
+請打開你的終端機（CMD）或 VSCode 的 Terminal，輸入以下兩行：
+
+bash
+複製
+編輯
+python manage.py makemigrations
+python manage.py migrate
+這會建立所有系統用的資料表，包括：
+
+auth_user
+
+django_session ← 你報錯的主角
+
+django_admin_log
+
+django_content_type 等
+
