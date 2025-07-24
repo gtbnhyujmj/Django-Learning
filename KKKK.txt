@@ -1,0 +1,51 @@
+你看到這個錯誤是因為你在網址輸入的是 http://127.0.0.1:8000/，但你的 Django 專案 sc.urls 裡面，沒有對應空白路徑 ("") 的 URL 規則，所以 Django 顯示了 404 錯誤。
+
+解法一：導向到某個頁面
+你可以在 sc/urls.py 裡，加一個對空路徑的處理，例如導向到登入頁：
+
+python
+複製
+編輯
+from django.urls import path, include
+from django.shortcuts import redirect
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('login/', include('你的app名稱.urls')),
+    path('', lambda request: redirect('login/')),  # 新增這行
+]
+解法二：自己定義首頁
+如果你打算有一個自己的首頁，可以這樣加：
+
+python
+複製
+編輯
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),  # 加入這個
+]
+然後 views.py 加：
+
+python
+複製
+編輯
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("這是首頁")
+選你要的方式。如果你是希望首頁直接跳到登入頁，那建議用解法一。需要幫你實作嗎？
+
+
+1/2
+
+
+
+
+
+
+
+
+
+詢問 ChatGPT
