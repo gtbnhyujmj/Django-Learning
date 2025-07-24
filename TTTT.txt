@@ -1,0 +1,137 @@
+他現在在講 相對位置 跟 絕對位置
+
+
+ChatGPT 說：
+很好！你現在聽到「相對位置」與「絕對位置」，這是在學檔案路徑時非常重要的基礎觀念，尤其是在 Django 設定 templates、static、或資料庫路徑時，一定會遇到。
+
+我幫你用簡單實際的例子講清楚：
+
+🟦 什麼是 絕對位置（absolute path）？
+就是從「根目錄開始，一層一層寫出完整路徑」，你不管在哪個資料夾執行都找得到。
+
+📦 範例：
+text
+複製
+編輯
+D:/vicent/sc/templates/home.html
+這是一個完整的絕對路徑，告訴你從「磁碟機根目錄 D:/」一路走到 home.html。
+
+✅ 特點：
+開頭有磁碟（如 D:/、C:/）
+
+寫得很完整，不容易錯
+
+可跨目錄使用
+
+寫死在程式中可能導致跨機器無法執行
+
+🟩 什麼是 相對位置（relative path）？
+相對於「你現在執行指令的地方」，去找其他檔案的路徑。
+就像你說：「從我現在這邊走到樓下客廳」，你不需要從大門開始說明。
+
+📦 範例：
+text
+複製
+編輯
+templates/home.html
+表示：從「目前資料夾」開始，往下找一個 templates 資料夾，裡面有 home.html。
+
+✅ 特點：
+不會寫死磁碟
+
+在不同環境或伺服器上比較好移植
+
+容易在「不同執行點」造成錯誤（找不到）
+
+🧠 在 Django 裡的實用觀念：
+1️⃣ BASE_DIR 是什麼？
+Django 專案通常在 settings.py 開頭會有這段：
+
+python
+複製
+編輯
+BASE_DIR = Path(__file__).resolve().parent.parent
+這行會把你的專案根目錄（sc/）儲存起來，方便你用來「組合相對路徑 → 絕對路徑」。
+
+2️⃣ 實務：用 BASE_DIR 組合模板資料夾
+python
+複製
+編輯
+'DIRS': [os.path.join(BASE_DIR, 'templates')]
+這段是：
+
+「從 Django 根目錄開始（BASE_DIR），再加上 templates 資料夾」
+組出一個絕對路徑，但程式內還是用相對邏輯組出來的，所以比較彈性。
+
+✅ 對照說明總結表
+路徑類型	寫法	說明
+絕對路徑	"D:/vicent/sc/templates/home.html"	完整的磁碟路徑，任何位置都找得到
+相對路徑	"templates/home.html"	依照你現在的位置來尋找
+Django 寫法	os.path.join(BASE_DIR, "templates")	從 BASE_DIR 開始組出一個穩定的絕對路徑
+
+需要我幫你畫一張結構圖＋範例來視覺化這些差別嗎？你應該會秒懂。
+
+
+
+
+
+
+
+你說：
+他是在跟db.sqllite.3同個資料夾 新增一個templates 然後同時解釋相對位置跟絕對位置，重點?
+
+
+ChatGPT 說：
+太好了！你現在的狀況是老師在實作中：
+
+🔸 在專案根目錄（跟 db.sqlite3 同一層）新增一個 templates 資料夾，
+🔸 並說明了「相對位置」與「絕對位置」的觀念。
+
+這段的重點與目的我幫你整理如下：
+
+🎯 這段課程的重點是：
+✅ 1. 教你建立「全域模板資料夾」
+templates/ 放在 專案根目錄（跟 db.sqlite3 同層）
+
+用來放 home.html、base.html 等「所有 app 都可以共用的 HTML」
+
+📁 資料夾長這樣：
+
+arduino
+複製
+編輯
+sc/
+├── db.sqlite3
+├── templates/
+│   └── home.html
+├── accounts/
+├── manage.py
+✅ 2. 解釋為什麼要設定 DIRS 路徑（連結到絕對 vs 相對）
+在 settings.py 裡寫這段：
+
+python
+複製
+編輯
+'DIRS': [os.path.join(BASE_DIR, 'templates').replace("\\", "/")],
+是為了讓 Django 正確地找到 templates/ 資料夾的位置。
+
+💡 老師提到的觀念核心：
+観念	解釋
+相對路徑	"templates/home.html" 是從「目前位置」開始找的路徑
+絕對路徑	D:/vicent/sc/templates/home.html 是從磁碟機根開始的完整路徑
+BASE_DIR 的用途	幫你取得 Django 專案根目錄 → 組出穩定、安全、跨平台的絕對路徑
+Django 的做法	用 os.path.join(BASE_DIR, 'templates') 組出絕對路徑，但寫法有彈性
+
+📌 為什麼 templates 要放在根目錄？
+因為這樣才可以寫「全域模板」，所有 app 都能使用，不然每個 app 都要有自己一份 templates 很麻煩。
+
+🧠 快速總結：
+你現在做的事情是：
+
+在專案根目錄加 templates 資料夾 → 放共用 HTML
+
+為了讓 Django 找到這個資料夾 → 要在 settings.py 的 DIRS 裡設定正確「絕對路徑」
+
+這過程中老師順便講了什麼是相對、什麼是絕對位置
+
+要不要我用你目前專案的實際路徑幫你畫一張圖，幫助你視覺化這些位置？很快就秒懂了。
