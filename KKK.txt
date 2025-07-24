@@ -1,0 +1,239 @@
+在D:\vicent下面安裝venv 從這一步開始弄 一步一步弄 我不會跳步
+
+
+ChatGPT 說：
+太好了！那我們從 D:\vicent 這個資料夾開始，一步一步建立 Django 專案與虛擬環境。你只要照順序輸入指令就可以。
+
+✅ 第一步：開啟命令提示字元（CMD）
+請按下：
+
+mathematica
+複製
+編輯
+Win + R → 輸入 cmd → Enter
+接下來，進入你要放專案的資料夾 D:\vicent：
+
+cmd
+複製
+編輯
+cd /d D:\vicent
+✅ 第二步：建立虛擬環境（資料夾叫 vu_3y94）
+cmd
+複製
+編輯
+python -m venv vu_3y94
+建立完會看到 D:\vicent\vu_3y94 這個資料夾。
+
+✅ 第三步：啟動虛擬環境
+cmd
+複製
+編輯
+vu_3y94\Scripts\activate
+成功的話你會看到命令提示字元變成這樣（前面多一段）：
+
+bash
+複製
+編輯
+(vu_3y94) D:\vicent>
+✅ 第四步：安裝 Django
+cmd
+複製
+編輯
+pip install django
+等跑完之後輸入：
+
+cmd
+複製
+編輯
+python -m django --version
+例如出現：
+
+複製
+編輯
+5.0.6
+就表示成功！
+
+✅ 到這裡我們停一下
+請你照這四步做完並回覆我「完成第 4 步」，我會幫你進入「建立 Django 專案 sc」的下一步。
+
+等你打完我再繼續，不會跳步 😎
+
+
+
+
+
+
+
+你說：
+完成第 4 步
+
+
+ChatGPT 說：
+太棒了！接下來我們繼續 👇
+
+✅ 第五步：建立 Django 專案，名稱叫做 sc
+請在虛擬環境啟動狀態下（提示字元應該還是 (vu_3y94) 開頭），輸入以下指令：
+
+cmd
+複製
+編輯
+django-admin startproject sc
+建立完成後，在 D:\vicent 資料夾裡會出現一個 sc 資料夾，裡面有這些東西：
+
+markdown
+複製
+編輯
+sc/
+├── manage.py
+└── sc/
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    ├── asgi.py
+    └── wsgi.py
+✅ 第六步：進入 sc 專案資料夾
+cmd
+複製
+編輯
+cd sc
+此時你會在：
+
+makefile
+複製
+編輯
+D:\vicent\sc>
+✅ 第七步：啟動 Django 伺服器來測試看看
+cmd
+複製
+編輯
+python manage.py runserver
+執行後會看到這一類訊息：
+
+rust
+複製
+編輯
+Watching for file changes...
+Starting development server at http://127.0.0.1:8000/
+請打開瀏覽器，前往：
+
+cpp
+複製
+編輯
+http://127.0.0.1:8000/
+你應該會看到 Django 的歡迎畫面，寫著：
+
+The install worked successfully! Congratulations!
+
+👇 請你做到這裡之後回我：「第 7 步完成」
+接著我會帶你建立 accounts app，把帳號管理功能搬過來。你只要繼續一步步做就好。
+
+
+
+
+
+
+
+你說：
+第 7 步完成
+
+
+ChatGPT 說：
+太棒了！你已經成功跑起 Django 專案了 🎉
+現在我們繼續把帳號管理功能搬過來，一步一步來 👇
+
+✅ 第八步：建立 Django App（模組），命名為 accounts
+你現在應該還在 D:\vicent\sc> 目錄下，請輸入：
+
+cmd
+複製
+編輯
+python manage.py startapp accounts
+這會在 sc 專案中產生一個 accounts/ 資料夾，裡面會有這些檔案：
+
+markdown
+複製
+編輯
+accounts/
+├── admin.py
+├── apps.py
+├── models.py
+├── tests.py
+├── views.py
+├── migrations/
+│   └── __init__.py
+└── __init__.py
+✅ 第九步：註冊 accounts App 到專案設定
+打開檔案 D:\vicent\sc\sc\settings.py
+
+找到這段：
+
+python
+複製
+編輯
+INSTALLED_APPS = [
+    ...
+]
+在其中加入 'accounts',：
+
+python
+複製
+編輯
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'accounts',  # 👈 加這行
+]
+👇 請你完成上面兩步後，告訴我：「第 9 步完成」
+接下來我會帶你寫出 User 模型，準備搬移 Flask 的帳號邏輯（註冊、登入、會員中心等）。我們會慢慢來，不會跳步 😎
+
+
+
+
+
+
+
+你說：
+第 9 步完成
+
+
+ChatGPT 說：
+很好！現在我們要來建立自訂的 User 模型，來對應你 Flask 裡的 User 類別，並加上 accountID 欄位 👇
+
+✅ 第十步：自訂 User 模型（包含帳號與密碼欄位）
+1️⃣ 編輯檔案 D:\vicent\sc\accounts\models.py
+請把原本的內容刪除，改成以下這段：
+
+python
+複製
+編輯
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+class User(AbstractUser):
+    accountID = models.IntegerField(null=True, blank=True)
+這會讓你擴充 Django 預設的 User 模型（它本來就有 username、password、email、is_staff 等欄位），並加上你自訂的欄位 accountID。
+
+2️⃣ 告訴 Django 要使用這個自訂的 User 模型
+請打開 D:\vicent\sc\sc\settings.py，在最後一行加入：
+
+python
+複製
+編輯
+AUTH_USER_MODEL = 'accounts.User'
+✅ 第十一步：建立資料表
+先儲存好所有檔案，然後回到命令提示字元（仍在 D:\vicent\sc>）執行：
+
+cmd
+複製
+編輯
+python manage.py makemigrations
+python manage.py migrate
+這會在 db.sqlite3 裡面建立所有資料表，包括我們的自訂 User。
+
+👇 請你完成這一步後，回覆我：「第 11 步完成」
+接下來我們會寫註冊表單與註冊頁功能，把 Flask 的 /register 轉成 Django 的版本。你做得很好，我們就快要開始搬頁面邏輯了 💪
