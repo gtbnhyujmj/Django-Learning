@@ -1,39 +1,35 @@
 在終端機 打 workon 是啥意思?
 
+===
 
-ChatGPT 說：
 workon 是 virtualenvwrapper 這個工具提供的指令，用來快速切換和管理 Python 虛擬環境。
 
 簡單說明：
 workon <env_name>：啟動（切換到）一個已經建立好的虛擬環境。
-
 例如，你建立了叫 myenv 的虛擬環境，打 workon myenv 就會進入那個環境。
 
 但要注意：
 workon 不是 Python 內建的指令，也不是 venv 自帶的。
-
 它來自一個叫 virtualenvwrapper (Linux/Mac 常用) 或 virtualenvwrapper-win (Windows) 的工具包。
-
 你必須先安裝並設定好它，才能用 workon。
 
+---
+
 你用的 venv 則是 Python 官方的虛擬環境管理工具，啟動虛擬環境用的是：
+
 Windows:
-
-bash
-複製
-編輯
 .\venv\Scripts\activate
+
 Mac/Linux:
-
-bash
-複製
-編輯
 source venv/bin/activate
+
+---
+
 總結：
-指令	作用	需要安裝什麼？
-workon	切換虛擬環境（virtualenvwrapper 提供）	需要安裝 virtualenvwrapper 或 virtualenvwrapper-win
-.\venv\Scripts\activate	啟動 Python 官方 venv 的虛擬環境	不需額外安裝，只要有 Python 3.3+
+指令	          作用	                                             需要安裝什麼？
+workon	        切換虛擬環境（virtualenvwrapper 提供）	             需要安裝 virtualenvwrapper 或 virtualenvwrapper-win
 
+---
+
+===>>> .\venv\Scripts\activate 是啟動 Python 官方 venv 的虛擬環境，不需額外安裝，只要有 Python 3.3+。
 如果你沒特別安裝 virtualenvwrapper，打 workon 就會顯示錯誤或找不到命令，這很正常。
-
-需要我教你怎麼安裝 virtualenvwrapper-win 嗎？還是你直接用 venv 內建的指令比較方便？
