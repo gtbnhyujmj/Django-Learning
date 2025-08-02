@@ -1,34 +1,28 @@
 🔧 解決方式：
 你目前 sc/urls.py 長這樣（根據錯誤訊息）：
 
-python
-複製
-編輯
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login_view, name='login'),
 ]
-所以你訪問的是：
 
-cpp
-複製
-編輯
+所以你訪問的是：
 http://127.0.0.1:8000/ ➜ 404
 http://127.0.0.1:8000/login/ ➜ ✅ 有對應
-✅ 解法一：去 /login/ 看看
-直接改網址：
 
-arduino
-複製
-編輯
+===
+
+✅ 解法一：去 /login/ 看看
+
+直接改網址：
 http://127.0.0.1:8000/login/
+
+===
+
 ✅ 解法二：設定首頁路由 /
 如果你想在打開根目錄 / 時也能看到頁面，你可以加一條對應 / 的路由。
 
 sc/urls.py：
-python
-複製
-編輯
 from django.contrib import admin
 from django.urls import path
 from yourapp import views  # 替換成你實際的 app 名稱
@@ -38,27 +32,29 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('', views.home, name='home'),  # 新增這一行
 ]
-然後去 yourapp/views.py 裡加一個 home：
-python
-複製
-編輯
-from django.shortcuts import render
 
+---
+然後去 yourapp/views.py 裡加一個 home：
+
+from django.shortcuts import render
 def home(request):
     return render(request, 'home.html')
+---
+
 最後，在你的 app 裡創一個 template 檔案 templates/home.html：
-html
-複製
-編輯
+
 <!-- templates/home.html -->
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>首頁</title>
 </head>
+
 <body>
     <h1>這是首頁</h1>
     <a href="/login/">前往登入頁</a>
 </body>
 </html>
+
 需要我幫你加這段到你的 Django 專案的路由和檢查 views 嗎？還是你只想先跑登入頁 /login/ 就好？
