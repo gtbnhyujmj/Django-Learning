@@ -72,35 +72,17 @@ The install worked successfully! Congratulations!
 
 ===
 
-👇 請你做到這裡之後回我：「第 7 步完成」
-接著我會帶你建立 accounts app，把帳號管理功能搬過來。你只要繼續一步步做就好。
-
-
-
-
-
-
-
-你說：
-第 7 步完成
-
-
 ChatGPT 說：
 太棒了！你已經成功跑起 Django 專案了 🎉
 現在我們繼續把帳號管理功能搬過來，一步一步來 👇
 
 ✅ 第八步：建立 Django App（模組），命名為 accounts
-你現在應該還在 D:\vicent\sc> 目錄下，請輸入：
 
-cmd
-複製
-編輯
+你現在應該還在 D:\vicent\sc> 目錄下，請輸入：
 python manage.py startapp accounts
+
 這會在 sc 專案中產生一個 accounts/ 資料夾，裡面會有這些檔案：
 
-markdown
-複製
-編輯
 accounts/
 ├── admin.py
 ├── apps.py
@@ -110,22 +92,20 @@ accounts/
 ├── migrations/
 │   └── __init__.py
 └── __init__.py
-✅ 第九步：註冊 accounts App 到專案設定
-打開檔案 D:\vicent\sc\sc\settings.py
 
+===
+
+✅ 第九步：註冊 accounts App 到專案設定
+
+打開檔案 D:\vicent\sc\sc\settings.py
 找到這段：
 
-python
-複製
-編輯
 INSTALLED_APPS = [
     ...
 ]
+
 在其中加入 'accounts',：
 
-python
-複製
-編輯
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -136,52 +116,38 @@ INSTALLED_APPS = [
 
     'accounts',  # 👈 加這行
 ]
-👇 請你完成上面兩步後，告訴我：「第 9 步完成」
-接下來我會帶你寫出 User 模型，準備搬移 Flask 的帳號邏輯（註冊、登入、會員中心等）。我們會慢慢來，不會跳步 😎
 
-
-
-
-
-
-
-你說：
-第 9 步完成
-
-
-ChatGPT 說：
-很好！現在我們要來建立自訂的 User 模型，來對應你 Flask 裡的 User 類別，並加上 accountID 欄位 👇
+===
 
 ✅ 第十步：自訂 User 模型（包含帳號與密碼欄位）
-1️⃣ 編輯檔案 D:\vicent\sc\accounts\models.py
-請把原本的內容刪除，改成以下這段：
 
-python
-複製
-編輯
+1️⃣ 編輯檔案 D:\vicent\sc\accounts\models.py
+
+請把原本的內容刪除，改成以下這段：
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class User(AbstractUser):
     accountID = models.IntegerField(null=True, blank=True)
+
 這會讓你擴充 Django 預設的 User 模型（它本來就有 username、password、email、is_staff 等欄位），並加上你自訂的欄位 accountID。
 
-2️⃣ 告訴 Django 要使用這個自訂的 User 模型
-請打開 D:\vicent\sc\sc\settings.py，在最後一行加入：
+---
 
-python
-複製
-編輯
+2️⃣ 告訴 Django 要使用這個自訂的 User 模型
+
+請打開 D:\vicent\sc\sc\settings.py，在最後一行加入：
 AUTH_USER_MODEL = 'accounts.User'
+
+---
+===
+
 ✅ 第十一步：建立資料表
 先儲存好所有檔案，然後回到命令提示字元（仍在 D:\vicent\sc>）執行：
 
-cmd
-複製
-編輯
 python manage.py makemigrations
 python manage.py migrate
+
 這會在 db.sqlite3 裡面建立所有資料表，包括我們的自訂 User。
 
-👇 請你完成這一步後，回覆我：「第 11 步完成」
-接下來我們會寫註冊表單與註冊頁功能，把 Flask 的 /register 轉成 Django 的版本。你做得很好，我們就快要開始搬頁面邏輯了 💪
+===
