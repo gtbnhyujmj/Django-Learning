@@ -39,6 +39,7 @@ your_project/
 
 .html 會自動載入：
 <link href="{% static 'css/index.css' %}" rel="stylesheet">
+<link href="{% static 'phones/css/index.css' %}" rel="stylesheet">
 ...
 
 # 核心概念就是用大量的<link href="{% static 'css/index.css' %}" rel="stylesheet">，來模組化CSS模板，複製好幾行總比一直改CSS好。
