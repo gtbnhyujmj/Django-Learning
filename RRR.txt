@@ -1,89 +1,74 @@
-他改了 language_code time_zone use_TZ
+他改了 language_code & time_zone & use_TZ...
 
+===
 
 ChatGPT 說：
 很好！這一段老師修改的是 Django 的 時區與語言設定，這在專案國際化或中文化時是很常見的動作。
 以下幫你完整說明每一項的用途、常見設定，以及為什麼需要改👇
 
-🔧 修改的目標檔案：
-bash
-複製
-編輯
+修改的目標檔案：
 sc/sc/settings.py
-搜尋這幾行（Django 預設就有）：
 
-python
-複製
-編輯
+搜尋這幾行（Django 預設就有）：
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+
+===
+
 ✅ 1. LANGUAGE_CODE：網站語言（影響內建訊息）
-語言	設定值	說明
-英文	'en-us'	預設語系
-中文	'zh-hant'	繁體中文（台灣適用）
-中文	'zh-hans'	簡體中文
+語言	設定值	        說明
+英文	'en-us'	      預設語系
+中文	'zh-hant'	    繁體中文（台灣適用）
+中文	'zh-hans'	    簡體中文
 
 👉 老師把這行改成：
-
-python
-複製
-編輯
 LANGUAGE_CODE = 'zh-hant'
 這樣你看到 Django 的錯誤訊息、表單提示會變成中文（只限內建訊息，非自定義字串）
 
+===
+
 ✅ 2. TIME_ZONE：伺服器的時間時區
-時區名稱	說明
-'UTC'	世界標準時間（預設）
-'Asia/Taipei'	台灣時間
-'Asia/Shanghai'	中國時間
-'America/New_York'	紐約時間
+時區名稱	              說明
+'UTC'	                世界標準時間（預設）
+'Asia/Taipei'	        台灣時間
+'Asia/Shanghai'	      中國時間
+'America/New_York'	  紐約時間
 
 👉 改成：
-
-python
-複製
-編輯
 TIME_ZONE = 'Asia/Taipei'
 這樣資料庫中儲存的時間（例如註冊時間、留言時間）就會以台灣時間為主。
 
+===
+
 ✅ 3. USE_TZ：是否使用時區轉換（建議保留 True）
-python
-複製
-編輯
+
 USE_TZ = True
+
 這代表：
-
 資料庫中的時間會統一以 UTC 儲存
-
 但會根據 TIME_ZONE 顯示轉換後的時間
 
-🔹 Django 的建議作法是：Always store time in UTC，display in local timezone
+Django 的建議作法是：Always store time in UTC，display in local timezone
 
-✅ 修改後範例：
-python
-複製
-編輯
-LANGUAGE_CODE = 'zh-hant'
+===
 
-TIME_ZONE = 'Asia/Taipei'
-
-USE_I18N = True
-USE_TZ = True
 🧠 對 Flask 的對照觀念？
-Flask	Django
-沒有內建語系處理	有 LANGUAGE_CODE 與翻譯機制
-要自行處理時間格式與轉換	有內建 TIME_ZONE 與 USE_TZ
-顯示時間用 datetime.now()	建議用 timezone.now()
+Flask	                       Django
+沒有內建語系處理	             有 LANGUAGE_CODE 與翻譯機制
+要自行處理時間格式與轉換	     有內建 TIME_ZONE 與 USE_TZ
+顯示時間用 datetime.now()	   建議用 timezone.now()
 
 ✅ 小總結
-設定名稱	功能
-LANGUAGE_CODE	設定網站預設語言（影響內建訊息）
-TIME_ZONE	設定你所在的實際時區（例如台灣）
-USE_TZ	控制是否使用 UTC 儲存時間
+設定名稱	                     功能
+LANGUAGE_CODE	               設定網站預設語言（影響內建訊息）
+TIME_ZONE	                   設定你所在的實際時區（例如台灣）
+USE_TZ	                     控制是否使用 UTC 儲存時間
+
+===
 
 如果你要讓 Django 的所有錯誤訊息與表單提示完全中文化，還需要安裝語言包。
 不過目前這樣設定就足夠應付大部分台灣本地開發了。
 
-有需要我補上 timezone 顯示轉換的實作範例也可以喔。
+===
