@@ -1,8 +1,5 @@
 這邊老師應該做的是：
 
-cpp
-複製
-編輯
 static/
 ├── css/
 │   └── style.css
@@ -10,14 +7,15 @@ static/
 │   └── app.js
 └── images/
     └── logo.png
+
+===
+
 然後在 HTML 裡這樣引用（用 Django 的 {% static %}）：
 
-html
-複製
-編輯
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <script src="{% static 'js/app.js' %}"></script>
 <img src="{% static 'images/logo.png' %}" alt="Logo">
+
 這樣 Django 才能幫你正確找到靜態資源（static files）路徑。
