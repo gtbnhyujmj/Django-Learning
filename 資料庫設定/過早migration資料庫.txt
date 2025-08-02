@@ -1,57 +1,44 @@
-這個錯誤代表你修改了 User 模型（使用 AbstractUser）太晚了，導致 Django 的內建 admin.0001_initial migration 先跑起來，卻沒等 accounts.0001_initial 先建立好，這會讓「自訂使用者」無法正確繼承。
+這個錯誤代表你修改了 User 模型（使用 AbstractUser）太晚了，
+導致 Django 的內建 admin.0001_initial migration 先跑起來，卻沒等 accounts.0001_initial 先建立好，
+這會讓「自訂使用者」無法正確繼承。
 
-這是 Django 自訂 User 模型最常見的陷阱。我們要用 乾淨的方法重設資料庫與 migration，你照著我以下步驟做就會沒事：
+這是 Django 自訂 User 模型最常見的陷阱。我們要用乾淨的方法重設資料庫與 migration，
+你照著我以下步驟做就會沒事：
+
+===
 
 ✅ 修復方式（從空資料庫重建）
 ⚠️ 注意：這會刪除目前的資料庫與遷移檔，不影響程式碼。
+
+===
+
 ✅ 1️⃣ 刪除資料庫檔案
 請刪掉 D:\vicent\sc\db.sqlite3（可以用檔案總管刪掉，或 CMD：）
-
-cmd
-複製
-編輯
 del db.sqlite3
+
+---
+
 ✅ 2️⃣ 刪除所有舊的 migration 檔案（除了 __init__.py）
+
 請手動刪除這兩個資料夾下的 migration 檔案：
-
 D:\vicent\sc\accounts\migrations\
-
 D:\vicent\sc\sc\migrations\（如果有的話）
 
-保留 __init__.py，其餘檔案全部刪除。舉例：
+保留 __init__.py，其餘檔案全部刪除。
 
-makefile
-複製
-編輯
-D:\vicent\sc\accounts\migrations\
-├── __init__.py       ✅ 留下
-├── 0001_initial.py   ❌ 刪掉
+---
+
 ✅ 3️⃣ 重新建立遷移檔與資料庫
-在 D:\vicent\sc> 下執行：
 
-cmd
-複製
-編輯
+在 D:\vicent\sc> 下執行：
 python manage.py makemigrations accounts
 python manage.py migrate
-你會看到類似：
 
-python-repl
-複製
-編輯
+你會看到類似：
 Applying accounts.0001_initial... OK
 Applying admin.0001_initial... OK
 ...
+
 這樣就修好了！🎉
 
-👇 請你照著這三步做完後，回我：「資料庫修復完成」
-我就會繼續帶你做「註冊功能」與「註冊頁」，把 Flask 的 /register 實作搬過來。加油！你已經快要看到成果了 😎
-
-
-
-
-
-
-
-你說：
-資料庫修復完成
+===
