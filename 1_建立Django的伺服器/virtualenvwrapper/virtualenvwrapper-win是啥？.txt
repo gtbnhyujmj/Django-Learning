@@ -4,7 +4,6 @@
 建立虛擬環境：mkvirtualenv
 啟用虛擬環境：workon
 刪除虛擬環境：rmvirtualenv
-自動切換工作目錄
 
 但這個跟你用 python -m venv 建立的虛擬環境 是分開的機制，互不干擾。
 
