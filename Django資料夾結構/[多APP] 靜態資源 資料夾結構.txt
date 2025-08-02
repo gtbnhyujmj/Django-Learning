@@ -33,10 +33,15 @@ your_project/
 {% extends 'accounts/basepages.html' %}
 
 2️⃣ CSS 統一放在 static/css/index.css
-你可以在 phones/templates/phones/index.html 裡寫樣式，不過最好全部寫進 index.css
+你可以在 phones/templates/phones/index.html 裡寫樣式，不過最好全部寫進 index.css。
 
-basepages.html 會自動載入：
+# 核心邏輯是，你就CSS渲染兩遍就可以了，不要改來改去的，容易出事。
+
+.html 會自動載入：
 <link href="{% static 'css/index.css' %}" rel="stylesheet">
+...
+
+# 核心概念就是用大量的<link href="{% static 'css/index.css' %}" rel="stylesheet">，來模組化CSS模板，複製好幾行總比一直改CSS好。
 
 3️⃣ settings.py 要這樣設：
 這樣 Django 會自己找 static 和 templates
